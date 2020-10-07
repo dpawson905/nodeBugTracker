@@ -21,8 +21,9 @@ const expressSanitizer = require("express-sanitizer");
 const User = require("./models/userModel");
 
 const authRouter = require("./routes/authRouter");
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
+const indexRouter = require("./routes/indexRouter");
+const projectRouter = require("./routes/projectRouter");
+const usersRouter = require("./routes/userRouter");
 
 const csrfProtection = csrf({ cookie: true });
 
@@ -121,6 +122,7 @@ app.locals.url = "home";
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
+app.use("/projects", projectRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler

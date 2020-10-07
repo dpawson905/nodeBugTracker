@@ -3,6 +3,13 @@ extends layout
 block content
   .container
     .row
-      .col.my-5
-        h1= title
-        p Welcome to #{title}
+      .col-12.my-5
+        .jumbotron.text-center
+          h1 Welcome to #{title}
+          p A simple web app to keep track of your applications bugs...
+      .col-12.mb-2
+        h2 How to use the app...
+        ol
+          li Create an account
+          li Create your tracker by naming your project
+          li Invite users to your project so they can test and add bugs and or feature requests
