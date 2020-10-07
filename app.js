@@ -110,7 +110,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(async (req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
-  res.locals.title = "Auth Starter";
+  res.locals.title = "Bug Tracker";
   res.locals.csrfToken = req.csrfToken();
   res.locals.token = req.query.token;
   res.locals.currentUser = req.user;
