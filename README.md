@@ -1,4 +1,4 @@
-# Auth Starter
+# Node Bug Tracker
 ## Requirements
 1. This project uses MongoDb(Mongoose), Express, Cloudinary, SendGrid and the template engine is Pug.
 2. For authentication is implemented using passport and stores local accounts.
