@@ -61,6 +61,14 @@ const middleware = {
     }
     next();
   },
+
+  checkMongoError: (err, req, res, next) => {
+    if (err.name === "MongoError" && err.code === 11000) {
+      req.flash('error', 'This project already exists. Please rename the project');
+      return res.redirect('back');
+    }
+    next();
+  }
 };
 
 module.exports = middleware;

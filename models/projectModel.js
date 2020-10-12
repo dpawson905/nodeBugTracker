@@ -12,8 +12,12 @@ const ProjectSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      lowercase: true,
-      unique: true,
+      lowercase: true
+    },
+    projectDesc: {
+      type: String,
+      trim: true,
+      required: true
     },
     bugsTracked: [
       {
@@ -26,6 +30,13 @@ const ProjectSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Feature",
+        required: true,
+      },
+    ],
+    testerId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
         required: true,
       },
     ],

@@ -56,18 +56,6 @@ const UserSchema = new Schema(
       secure_url: { type: String, default: "/images/no-user.jpg" },
       public_id: String,
     },
-    projectsCreated: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Project"
-      },
-    ],
-    projectsInvitedTo: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Project"
-      },
-    ],
     expiresDateCheck: {
       type: Date,
       default: undefined,

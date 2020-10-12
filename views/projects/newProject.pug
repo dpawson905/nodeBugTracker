@@ -4,6 +4,17 @@ block content
   .container.my-5
     .row
       .col-12
-        h1 Create a new project
+        h1.text-center Create a new project
+      .col-6.offset-3.mt-3
+        form(action="/projects/new-project", method="post")
+          .form-group
+            label(for="projectName") Project Name
+            input.form-control(type="text", name="projectName", id="projectName", placeholder="Project Name")
+          .form-group
+            label(for="projectDesc") Project Description
+            input.form-control(type="text", name="projectDesc", id="ProjectDesc", placeholder="Project Description")
+          .form-group
+            input(type="hidden", name="_csrf" value=`${csrfToken}`)
+            button.btn.btn-primary Submit
 
   include ../partials/_footer

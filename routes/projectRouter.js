@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const projectController = require('../controllers/projectRouter');
+const { asyncErrorHandler, checkMongoError } = require("../middleware");
+const projectController = require("../controllers/projectRouter");
 
-router.get('/', projectController.indexPage)
+router
+  .route("/new-project")
+  .get(asyncErrorHandler(projectController.indexPage))
+  .post(asyncErrorHandler(projectController.postProject));
 
 module.exports = router;
