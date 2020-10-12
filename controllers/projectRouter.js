@@ -28,8 +28,7 @@ exports.postProject = async (req, res, next) => {
     req.flash("success", `${newProject.projectName} has been created`);
     return res.redirect("/");
   } catch (err) {
-    const url = emailUrl.setUrl(req, "/projects/", `new-project`);
-    await new Email(err, url).sendErrorEmail();
+    await new Email(user, err).sendErrorEmail();
     debug(err);
     req.flash(
       "error",
