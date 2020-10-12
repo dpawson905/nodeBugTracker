@@ -27,7 +27,9 @@ exports.postProject = async (req, res, next) => {
     req.flash("success", `${newProject.projectName} has been created`);
     return res.redirect("/");
   } catch (err) {
-    /* WE NEED TO IMPLEMENT AN ERROR EMAIL CLASS HERE */
+    /* 
+      WE NEED TO IMPLEMENT AN ERROR EMAIL CLASS IN UTILS TO SEND AN ERROR MESSAGE TO THE ADMIN/WEBMASTER
+    */
     debug(err);
     req.flash(
       "error",
