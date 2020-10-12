@@ -52,4 +52,8 @@ module.exports = class Email {
   async sendPasswordChange() {
     await this.send("passwordChanged", "Your password has been changed");
   }
+
+  async sendErrorEmail() {
+    await this.send('errorEmail', 'An error has occured on your site.')
+  }
 };

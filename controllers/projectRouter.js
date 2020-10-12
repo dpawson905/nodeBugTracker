@@ -1,5 +1,6 @@
 const debug = require("debug")("bug-tracker:project");
-const User = require("../models/userModel");
+const Email = require("../utils/email");
+const emailUrl = require("../utils/urls");
 const Project = require("../models/projectModel");
 
 exports.indexPage = async (req, res, next) => {
@@ -27,9 +28,8 @@ exports.postProject = async (req, res, next) => {
     req.flash("success", `${newProject.projectName} has been created`);
     return res.redirect("/");
   } catch (err) {
-    /* 
-      WE NEED TO IMPLEMENT AN ERROR EMAIL CLASS IN UTILS TO SEND AN ERROR MESSAGE TO THE ADMIN/WEBMASTER
-    */
+    const url = emailUrl.setUrl(req, "/projects/", `new-project`);
+    await new Email(err, url).sendErrorEmail();
     debug(err);
     req.flash(
       "error",
