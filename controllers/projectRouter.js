@@ -33,7 +33,7 @@ exports.postProject = async (req, res, next) => {
     debug(err);
     req.flash(
       "error",
-      "An error has occurred we have been notified and will be looking into is soon."
+      "An error has occurred we have been notified and will be looking into it soon."
     );
     return res.redirect("/");
   }
