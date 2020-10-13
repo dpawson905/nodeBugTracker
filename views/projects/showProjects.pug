@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container.my-5
+    .row
+      .col-12
+        h1.text-center.capitolize Your current projects
+      .col-8.offset-2.mt-3
+        .card
+          .card-header.capitolize Here are your projects
+          ul.list-group.list-group-flush
+            each project in userProjects
+              li.list-group-item
+                p.my-0.capitolize
+                  a(href=`${project.id}`)= project.projectName
+                small=project.projectDesc
+  include ../partials/_footer

@@ -44,4 +44,13 @@ const ProjectSchema = new Schema(
   { timestamps: true }
 );
 
+ProjectSchema.pre(/^find/, function(next) {
+  this.populate('projectCreator');
+  next();
+});
+ProjectSchema.pre(/^find/, function(next) {
+  this.populate('testerId');
+  next();
+});
+
 module.exports = mongoose.model("Project", ProjectSchema);

@@ -4,11 +4,11 @@ const pug = require("pug");
 const htmlToText = require("html-to-text");
 
 module.exports = class Email {
-  constructor(user, url, err) {
+  constructor(user, url, message) {
     this.to = user.email || process.env.ADMIN_EMAIL;
     this.firstName = user.firstName || '';
     this.url = url || '';
-    this.err - err || '';
+    this.message = message || '';
     this.from = `Darrell Pawson <${process.env.EMAIL_FROM}>` || process.env.ADMIN_EMAIL;
   }
 

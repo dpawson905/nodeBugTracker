@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const { asyncErrorHandler, checkMongoError } = require("../middleware");
-const projectController = require("../controllers/projectRouter");
+const { asyncErrorHandler} = require("../middleware");
+const projectController = require("../controllers/projectController");
+
+router.get('/', asyncErrorHandler(projectController.viewProjects));
 
 router
   .route("/new-project")

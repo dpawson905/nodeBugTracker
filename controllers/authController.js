@@ -95,9 +95,9 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = async (req, res, next) => {
   await passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/projects",
     failureRedirect: "/",
-    successFlash: `Welcome back ${user.username}`,
+    successFlash: `Welcome back ${req.body.username}`,
     failureFlash: true,
   })(req, res, next);
 };

@@ -9,6 +9,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
           a.nav-link(class=(url === 'home' ? 'active' : '') href='/') Home
         li.nav-item
           a.nav-link(class=(url === 'new-project' ? 'active' : '') href='/projects/new-project') New Project
+        li.nav-item
+          a.nav-link(class=(url === 'projects' ? 'active' : '') href='/projects') Your Projects
       ul.navbar-nav.ml-auto.mb-2.mb-lg-0
         if currentUser && isAuthenticated
           li.nav-item
