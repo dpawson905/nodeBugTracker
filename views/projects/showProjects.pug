@@ -4,7 +4,10 @@ block content
   .container.my-5
     .row
       .col-12
-        h1.text-center.capitolize Your current projects
+        if currentUser.userType === 'creator'
+          h1.text-center.capitolize Your current projects
+        else
+          h1.text-center.capitolize Your apps to test
       .col-8.offset-2.mt-3
         .card
           .card-header.capitolize Here are your projects

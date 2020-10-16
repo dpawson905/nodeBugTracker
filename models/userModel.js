@@ -52,6 +52,12 @@ const UserSchema = new Schema(
         default: true,
       },
     },
+    userType: {
+      type: String,
+      required: [true, 'Please seclect a role in the form.'],
+      trim: true,
+      lowercase: true
+    },
     projects: [
       {
         type: Schema.Types.ObjectId,

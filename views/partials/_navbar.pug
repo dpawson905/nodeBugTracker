@@ -7,10 +7,15 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       ul.navbar-nav.mr-auto.mb-2.mb-lg-0
         li.nav-item
           a.nav-link(class=(url === 'home' ? 'active' : '') href='/') Home
-        li.nav-item
-          a.nav-link(class=(url === 'new-project' ? 'active' : '') href='/projects/new-project') New Project
-        li.nav-item
-          a.nav-link(class=(url === 'projects' ? 'active' : '') href='/projects') Your Projects
+        if currentUser && isAuthenticated
+          if currentUser.userType === 'creator'
+            li.nav-item
+              a.nav-link(class=(url === 'new-project' ? 'active' : '') href='/projects/new-project') New Project
+            li.nav-item
+              a.nav-link(class=(url === 'projects' ? 'active' : '') href='/projects') Your Projects
+          else
+            li.nav-item
+              a.nav-link(class=(url === 'projects' ? 'active' : '') href='/projects') Test Apps
       ul.navbar-nav.ml-auto.mb-2.mb-lg-0
         if currentUser && isAuthenticated
           li.nav-item

@@ -27,6 +27,7 @@ exports.postRegister = async (req, res, next) => {
       firstName: userInfo.firstName,
       lastName: userInfo.lastName,
       email: userInfo.email,
+      userType: userInfo.userType,
       username: userInfo.username,
       expiresDateCheck: Date.now(),
       isVerified: false,
@@ -55,7 +56,7 @@ exports.postRegister = async (req, res, next) => {
         url: "register",
       });
     } else {
-      console.log(err);
+      debug(err);
       const error = err.message;
       return res.render("auth/register", {
         error,
