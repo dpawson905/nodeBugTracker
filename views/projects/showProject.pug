@@ -5,17 +5,20 @@ block content
     .row
       .col-12
         h1.text-center.capitolize Your current projects
-      .col-8.offset-2.mt-3
+      .col-8.mt-3
         h1.capitolize= project.projectName
         p= project.projectDesc
         p.capitolize
           a(href=`${project.projectUrl}`) View project site
-        hr
-        ul
-          li= `Project Creator: ${project.projectCreator.username}`
-          hr
-          p Test Users / Contributors
-          each tester in project.testerId
-            li= tester.username
+      .col-4.my-3
+        p Project Creator(s)
+        a(href="#")
+          img.img-fluid.contribImage.mb-2(src=`${project.projectCreator.image.secure_url}`, alt=`${project.projectCreator.username}'s image`)
+        p Test Users / Contributors
+        each tester in project.testerId
+          a(href="#")
+            img.img-fluid.contribImage(src=`${tester.image.secure_url}`, alt=`${tester.username}'s image`)
+            
+        
         
   include ../partials/_footer
