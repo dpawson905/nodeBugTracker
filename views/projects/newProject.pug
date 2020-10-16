@@ -12,7 +12,10 @@ block content
             input.form-control(type="text", name="projectName", id="projectName", placeholder="Project Name")
           .form-group
             label(for="projectDesc") Project Description
-            input.form-control(type="text", name="projectDesc", id="ProjectDesc", placeholder="Project Description")
+            input.form-control(type="text", name="projectDesc", id="projectDesc", placeholder="Project Description")
+          .form-group
+            label(for="projectUrl") Project Url
+            input.form-control(type="text", name="projectUrl", id="projectUrl", placeholder="Project Url")
           .form-group
             input(type="hidden", name="_csrf" value=`${csrfToken}`)
             button.btn.btn-primary Submit

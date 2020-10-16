@@ -6,6 +6,9 @@ const projectController = require("../controllers/projectController");
 
 router.get('/', asyncErrorHandler(projectController.viewProjects));
 
+router.route('/:id')
+  .get(asyncErrorHandler(projectController.viewProject));
+
 router
   .route("/new-project")
   .get(asyncErrorHandler(projectController.indexPage))

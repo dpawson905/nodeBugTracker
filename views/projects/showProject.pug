@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container.my-5
+    .row
+      .col-12
+        h1.text-center.capitolize Your current projects
+      .col-8.offset-2.mt-3
+        h1.capitolize= project.projectName
+        p= project.projectDesc
+        p.capitolize
+          a(href=`${project.projectUrl}`) View project site
+        hr
+        ul
+          li= `Project Creator: ${project.projectCreator.username}`
+          hr
+          p Test Users / Contributors
+          each tester in project.testerId
+            li= tester.username
+        
+  include ../partials/_footer

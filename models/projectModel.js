@@ -19,6 +19,12 @@ const ProjectSchema = new Schema(
       trim: true,
       required: true
     },
+    projectUrl: {
+      type: String,
+      lowercase: true,
+      required: true,
+      trim: true
+    },
     bugsTracked: [
       {
         type: Schema.Types.ObjectId,

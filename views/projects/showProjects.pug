@@ -12,6 +12,6 @@ block content
             each project in userProjects
               li.list-group-item
                 p.my-0.capitolize
-                  a(href=`${project.id}`)= project.projectName
+                  a(href=`/projects/${project.id}`)= project.projectName
                 small=project.projectDesc
   include ../partials/_footer

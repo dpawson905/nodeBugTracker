@@ -4,12 +4,11 @@ const pug = require("pug");
 const htmlToText = require("html-to-text");
 
 module.exports = class Email {
-  constructor(user, url, message) {
-    this.to = user.email || process.env.ADMIN_EMAIL;
-    this.firstName = user.firstName || '';
-    this.url = url || '';
-    this.message = message || '';
-    this.from = `Darrell Pawson <${process.env.EMAIL_FROM}>` || process.env.ADMIN_EMAIL;
+  constructor(user, url) {
+    this.to = user.email;
+    this.firstName = user.firstName;
+    this.url = url;
+    this.from = `Darrell Pawson <${process.env.EMAIL_FROM}>`;
   }
 
   async send(template, subject) {
@@ -52,9 +51,5 @@ module.exports = class Email {
 
   async sendPasswordChange() {
     await this.send("passwordChanged", "Your password has been changed");
-  }
-
-  async sendErrorEmail() {
-    await this.send('errorEmail', 'An error has occured on your site.')
   }
 };

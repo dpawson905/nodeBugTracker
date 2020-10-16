@@ -1,6 +1,4 @@
 const debug = require("debug")("bug-tracker:project");
-const Email = require("../utils/email");
-const emailUrl = require("../utils/urls");
 const Project = require("../models/projectModel");
 
 exports.indexPage = async (req, res, next) => {
@@ -10,6 +8,12 @@ exports.indexPage = async (req, res, next) => {
 exports.viewProjects = async (req, res, next) => {
   const userProjects = await Project.find({ projectCreator: req.user });
   res.render('projects/showProjects', { userProjects, url: 'projects' });
+};
+
+exports.viewProject = async (req, res, next) => {
+  const project = await Project.findById(req.params.id);
+  console.log(project)
+  res.render('projects/showProject', { project });
 }
 
 exports.postProject = async (req, res, next) => {
@@ -27,15 +31,17 @@ exports.postProject = async (req, res, next) => {
     const newProject = await Project.create({
       projectName: req.body.projectName,
       projectDesc: req.body.projectDesc,
+      projectUrl: req.body.projectUrl,
       projectCreator: req.user.id,
       testerId: req.user.id,
     });
+    const user = req.user;
+    user.projects.push(newProject);
+    await user.save();
     req.flash("success", `${newProject.projectName} has been created`);
     return res.redirect("/");
   } catch (err) {
-    let url = ''
-    let message = err;
-    await new Email(req.user, url, message).sendErrorEmail();
+    // Need to create a new class(maybe) that will email an admin the error...
     debug(err);
     req.flash(
       "error",

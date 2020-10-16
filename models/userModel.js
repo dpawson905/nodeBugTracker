@@ -52,6 +52,13 @@ const UserSchema = new Schema(
         default: true,
       },
     },
+    projects: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Project",
+        required: true,
+      },
+    ],
     image: {
       secure_url: { type: String, default: "/images/no-user.jpg" },
       public_id: String,
@@ -65,6 +72,11 @@ const UserSchema = new Schema(
   },
   { timestamps: true }
 );
+
+UserSchema.pre('findOne', function (next) {
+  this.populate('projects');
+  next();
+});
 
 UserSchema.plugin(passportLocalMongoose, {
   limitAttempts: true,
