@@ -4,6 +4,7 @@ const router = express.Router();
 const { asyncErrorHandler, checkUserType, isNotAuthenticated } = require("../middleware");
 const projectController = require("../controllers/projectController");
 const bugController = require('../controllers/bugController');
+const featureController = require('../controllers/featureController');
 
 router
   .route("/new-project")
@@ -17,5 +18,8 @@ router.route('/:id')
 
 router.route('/:id/bug')
   .post(isNotAuthenticated, asyncErrorHandler(bugController.postBug));
+
+router.route('/:id/feature')
+  .post(isNotAuthenticated, asyncErrorHandler(featureController.postFeature));
 
 module.exports = router;

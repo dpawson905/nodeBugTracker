@@ -31,8 +31,9 @@ block content
           #bugs.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='bugs-tab')
             each bug in project.bugsTracked
               include ../partials/_bugCard
-          #features.tab-pane.fade(role='tabpanel' aria-labelledby='features-tab') ...
-            
+          #features.tab-pane.fade(role='tabpanel' aria-labelledby='features-tab')
+            each feature in project.featuresTracked
+              include ../partials/_featureCard
 
   include ../partials/_bugModal
   include ../partials/_featureModal
