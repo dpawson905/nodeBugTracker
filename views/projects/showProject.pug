@@ -4,12 +4,15 @@ block content
   .container.my-5
     .row
       .col-12
-        h1.text-center.capitolize Your current projects
+        h1.text-center.capitolize= project.projectName
       .col-8.mt-3
         h1.capitolize= project.projectName
         p= project.projectDesc
         p.capitolize
           a(href=`${project.projectUrl}`) View project site
+          div
+            button.btn.btn-outline-primary.capitolize.mr-1(type="button" data-toggle="modal" data-target="#bugModal") Submit a bug
+            button.btn.btn-outline-secondary.capitolize(type="button" data-toggle="modal" data-target="#featureModal") Submit a feature
       .col-4.my-3
         p Project Creator(s)
         a(href="#")
@@ -18,7 +21,19 @@ block content
         each tester in project.testerId
           a(href="#")
             img.img-fluid.contribImage(src=`${tester.image.secure_url}`, alt=`${tester.username}'s image`)
+      .col-12.mt-5
+        ul#myTab.nav.nav-tabs(role='tablist')
+          li.nav-item(role='presentation')
+            a#bugs-tab.nav-link.active(data-toggle='tab' href='#bugs' role='tab' aria-controls='bugs' aria-selected='true') Bugs
+          li.nav-item(role='presentation')
+            a#features-tab.nav-link(data-toggle='tab' href='#features' role='tab' aria-controls='features' aria-selected='false') Features
+        #myTabContent.tab-content
+          #bugs.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='bugs-tab')
+            each bug in project.bugsTracked
+              include ../partials/_bugCard
+          #features.tab-pane.fade(role='tabpanel' aria-labelledby='features-tab') ...
             
-        
-        
+
+  include ../partials/_bugModal
+  include ../partials/_featureModal
   include ../partials/_footer

@@ -76,6 +76,8 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 
+app.locals.moment = require("moment");
+
 const sess = {
   secret: process.env.COOKIE_SECRET,
   cookie: {

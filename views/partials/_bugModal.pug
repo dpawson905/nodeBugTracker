@@ -1,0 +1,20 @@
+// Modal
+#bugModal.modal.fade(tabindex='-1' aria-labelledby='bugModalLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#bugModalLabel.modal-title.capitolize Submit a bug
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        form(action=`/projects/${project.id}/bug`, method="post")
+          .form-group
+            label.capitolize(for="title") Bug title
+            input.form-control(type="text" name="title" id="title" placeholder="Bug Title" autofocus required)
+          .form-group
+            label.capitolize(for="description") Describe the issue?
+            textarea.form-control(name="description" id="description" placeholder="Describe the issue as best as you can" rows="5" required)
+          .modal-footer
+            input(type="hidden", name="_csrf" value=`${csrfToken}`)
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submut') Submit

@@ -1,0 +1,12 @@
+.card.shadow.my-2
+  .card-header.capitolize= bug.title
+    span.float-right.badge.badge-danger Bug
+  .card-body
+    p.card-text.pb-3= bug.description
+    hr
+    p.float-left
+      span= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
+      br
+      span= `By: ${bug._userId.username}`      
+    if currentUser.id === project.projectCreator.id
+      a.btn.btn-outline-secondary.float-right(href="#") Update

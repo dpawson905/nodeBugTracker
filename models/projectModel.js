@@ -58,5 +58,29 @@ ProjectSchema.pre(/^find/, function(next) {
   this.populate('testerId');
   next();
 });
+ProjectSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: "bugsTracked",
+    options: {
+      sort: {
+        // Show newest review at the top
+        _id: -1,
+      },
+    }
+  });
+  next();
+});
+// ProjectSchema.pre(/^find/, function(next) {
+//   this.populate({
+//     path: "featuresTracked",
+//     options: {
+//       sort: {
+//         // Show newest review at the top
+//         _id: -1,
+//       },
+//     },
+//   });
+//   next();
+// });
 
 module.exports = mongoose.model("Project", ProjectSchema);

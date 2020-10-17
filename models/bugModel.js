@@ -11,8 +11,7 @@ const BugSchema = new Schema({
     type: String,
     trim: true,
     required: true,
-    lowercase: true,
-    unique: true,
+    lowercase: true
   },
   description: {
     type: String,
@@ -26,5 +25,10 @@ const BugSchema = new Schema({
     },
   ],
 }, { timestamps: true });
+
+BugSchema.pre(/^find/, function (next) {
+  this.populate("_userId");
+  next();
+});
 
 module.exports = mongoose.model("Bug", BugSchema);

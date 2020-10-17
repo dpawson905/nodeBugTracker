@@ -66,6 +66,12 @@ const middleware = {
       });
     }
     next();
+  }, 
+
+  checkUserType: (req, res, next) => {
+    if (req.user.userType === 'creator') return next();
+    req.flash('error', 'You do not have permission to do this.');
+    res.redirect('/projects');
   }
 };
 

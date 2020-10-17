@@ -1,0 +1,20 @@
+// Modal
+#featureModal.modal.fade(tabindex='-1' aria-labelledby='featureModalLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#featureModalLabel.modal-title.capitolize Request a new feature
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        form(action=`/projects/${project.id}/feature`, method="post")
+          .form-group
+            label.capitolize(for="title") What is the feature?
+            input.form-control(type="text" name="title" id="title" placeholder="Feature Title" autofocus required)
+          .form-group
+            label.capitolize(for="description") Describe the feature?
+            textarea.form-control(name="description" id="description" placeholder="Describe the feature that you would like to have in the app" rows="5" required)
+          .modal-footer
+            input(type="hidden", name="_csrf" value=`${csrfToken}`)
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submut') Submit
