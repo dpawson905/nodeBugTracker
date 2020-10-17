@@ -10,7 +10,13 @@ block content
           h1.text-center.capitolize Your apps to test
       .col-8.offset-2.mt-3
         .card
-          .card-header.capitolize Here are your projects
+          .card-header.capitolize 
+            if !userProjects.length
+              p.m-0 You currently have no projects
+                span.float-right
+                  a.btn.btn-outline-primary.btn-sm(href="/projects/new-project") Create one
+            else
+              p.m-0 Here are your projects 
           ul.list-group.list-group-flush
             each project in userProjects
               li.list-group-item
