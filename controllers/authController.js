@@ -57,7 +57,7 @@ exports.postRegister = async (req, res, next) => {
       });
     } else {
       debug(err);
-      const error = err;
+      const error = err.message;
       return res.render("auth/register", {
         error,
         userInfo,
