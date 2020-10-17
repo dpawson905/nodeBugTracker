@@ -39,7 +39,7 @@ exports.postProject = async (req, res, next) => {
     user.projects.push(newProject);
     await user.save();
     req.flash("success", `${newProject.projectName} has been created`);
-    return res.redirect("/");
+    return res.redirect("/projects");
   } catch (err) {
     // Need to create a new class(maybe) that will email an admin the error...
     debug(err);
