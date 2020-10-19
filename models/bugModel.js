@@ -1,30 +1,31 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const BugSchema = new Schema({
-  _userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  title: {
-    type: String,
-    trim: true,
-    required: true,
-    lowercase: true
-  },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  images: [
-    {
-      url: String,
+const BugSchema = new Schema(
+  {
+    _userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    title: {
+      type: String,
+      trim: true,
+      required: true,
+      lowercase: true,
+    },
+    description: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    image: {
+      secure_url: String,
       public_id: String,
     },
-  ],
-}, { timestamps: true });
+  },
+  { timestamps: true }
+);
 
 BugSchema.pre(/^find/, function (next) {
   this.populate("_userId");

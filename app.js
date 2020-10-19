@@ -40,6 +40,7 @@ const styleSrcUrls = [];
 const connectSrcUrls = [];
 const frameSrcUrls = [];
 const fontSrcUrls = [];
+const imgUrls = ["https://res.cloudinary.com/"];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -49,7 +50,7 @@ app.use(
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
       workerSrc: ["'self'", "blob:"],
-      imgSrc: ["'self'", "blob:", "data:"],
+      imgSrc: ["'self'", "blob:", "data:", ...imgUrls],
       fontSrc: ["'self'", ...fontSrcUrls],
     },
   })
@@ -61,7 +62,7 @@ if (process.env.NODE_ENV.trim() === "development") {
 }
 app.use(methodOverride("_method"));
 app.use(express.json({ limit: "10kb" }));
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(cookieParser());
 app.use(mongoSanitize());

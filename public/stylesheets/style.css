@@ -4,6 +4,10 @@ body {
 .capitolize {
   text-transform: capitalize; }
 
+.image {
+  width: 200px;
+  height: auto; }
+
 .login-img {
   height: 95.7vh;
   max-height: 100vh;

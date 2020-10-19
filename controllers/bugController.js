@@ -2,15 +2,28 @@ const debug = require("debug")("bug-tracker:project");
 const Project = require("../models/projectModel");
 const Bug = require("../models/bugModel");
 
+const { cloudinary } = require("../cloudinary/");
+const { deleteProfileImage } = require("../middleware");
+const { image } = require("cloudinary");
+
 exports.postBug = async (req, res, next) => {
   try {
-    const newBug = await Bug.create({
+    if (req.file) {
+      const { secure_url, public_id } = req.file;
+      req.body.image = {
+        secure_url,
+        public_id,
+      };
+    }
+    const newBug = new Bug({
       _userId: req.user,
       title: req.body.title,
       description: req.body.description,
+      image: req.body.image
     });
     const project = await Project.findById(req.params.id);
     project.bugsTracked.push(newBug);
+    await newBug.save();
     await project.save();
     req.flash(
       "success",
@@ -19,6 +32,7 @@ exports.postBug = async (req, res, next) => {
     return res.redirect("back");
   } catch (err) {
     debug(err);
+    await deleteProfileImage(req);
     req.flash("error", "Something went wrong, please try again later.");
     return res.redirect("back");
   }

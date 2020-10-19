@@ -12,7 +12,6 @@ exports.viewProjects = async (req, res, next) => {
 
 exports.viewProject = async (req, res, next) => {
   const project = await Project.findById(req.params.id);
-  console.log(project)
   res.render('projects/showProject', { project });
 }
 

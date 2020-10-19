@@ -7,13 +7,16 @@
         button.close(type='button' data-dismiss='modal' aria-label='Close')
           span(aria-hidden='true') &times;
       .modal-body
-        form(action=`/projects/${project.id}/bug`, method="post")
+        form(action=`/projects/${project.id}/bug?_csrf=${csrfToken}`, method="post" enctype="multipart/form-data")
           .form-group
             label.capitolize(for="title") Bug title
             input.form-control(type="text" name="title" id="title" placeholder="Bug Title" autofocus required)
           .form-group
             label.capitolize(for="description") Describe the issue?
             textarea.form-control(name="description" id="description" placeholder="Describe the issue as best as you can" rows="5" required)
+          .form-group
+            label(for="image") Screenshot if applicable
+            input.form-control-file(type="file", name="image")
           .modal-footer
             input(type="hidden", name="_csrf" value=`${csrfToken}`)
             button.btn.btn-secondary(type='button' data-dismiss='modal') Close

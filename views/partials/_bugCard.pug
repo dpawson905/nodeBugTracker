@@ -1,12 +1,26 @@
 .card.shadow.my-2
   .card-header.capitolize= bug.title
-    span.float-right.badge.badge-danger Bug
+    if currentUser.id === project.projectCreator.id
+      button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button") Update/Add Status
+    span.badge.badge-danger.ml-2 Bug
   .card-body
-    p.card-text.pb-3= bug.description
-    hr
-    p.mb-0.float-left
+    if bug.image.secure_url
+      a(href=`${bug.image.secure_url}` target="_blank")
+        img.img-thumbnail.img-fluid.image.float-right(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+    p.card-text.float-left= bug.description
+    br
+    .clearfix
+    p.mb-0
       small= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
       br
-      small= `By: ${bug._userId.username}`      
-    if currentUser.id === project.projectCreator.id
-      button.my-auto.btn.btn-outline-secondary.btn-sm.float-right(type="button") Update
+      small= `By: ${bug._userId.username}`
+  .card.mt-2
+    .card-header.capitolize Comments
+      button.btn.btn-outline-primary.btn-sm.float-right(type="button") Hide/Show Comments
+      button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
+      include _commentModal
+    .card-body.shadow
+      p Comment here
+      small= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
+      br
+      small= `By: ${bug._userId.username}`
