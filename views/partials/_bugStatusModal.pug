@@ -1,0 +1,25 @@
+// Modal
+#bugStatusModal.modal.fade(tabindex='-1' aria-labelledby='bugStatusModalLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#bugStatusModalLabel.modal-title.capitolize Update Status
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        form(action=`/projects/${project.id}/status`, method="post")
+          h6 Bug Status
+          .form-group
+            .form-check.form-check-inline
+              <input class="form-check-input" type="checkbox" id="duplicate" name="bugs[]" value="duplicate">
+              <label class="form-check-label" for="duplicate">Duplicate</label>
+            .form-check.form-check-inline
+              <input class="form-check-input" type="checkbox" id="valid" name="bugs[]" value="valid">
+              <label class="form-check-label" for="valid">Valid</label>
+            .form-check.form-check-inline
+              <input class="form-check-input" type="checkbox" id="needInfo" name="bugs[]" value="need-info">
+              <label class="form-check-label" for="needInfo">Need More Info</label>      
+          .modal-footer
+            input(type="hidden", name="_csrf" value=`${csrfToken}`)
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submut') Submit

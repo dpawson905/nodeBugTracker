@@ -1,7 +1,7 @@
 .card.shadow.my-2
   .card-header.capitolize= bug.title
     if currentUser.id === project.projectCreator.id
-      button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button") Update/Add Status
+      button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button" data-toggle="modal" data-target="#bugStatusModal") Update/Add Status
     span.badge.badge-danger.ml-2 Bug
   .card-body
     if bug.image.secure_url

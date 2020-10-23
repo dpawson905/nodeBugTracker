@@ -12,18 +12,28 @@ const ProjectSchema = new Schema(
       type: String,
       trim: true,
       required: true,
-      lowercase: true
+      lowercase: true,
     },
     projectDesc: {
       type: String,
       trim: true,
-      required: true
+      required: true,
     },
     projectUrl: {
       type: String,
       lowercase: true,
       required: true,
-      trim: true
+      trim: true,
+    },
+    bugTags: {
+      type: [String],
+      lowercase: true,
+      trim: true,
+    },
+    featureTags: {
+      type: [String],
+      lowercase: true,
+      trim: true,
     },
     bugsTracked: [
       {

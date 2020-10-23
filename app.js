@@ -35,16 +35,26 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // Set security HTTP headers
-const scriptSrcUrls = [];
-const styleSrcUrls = [];
-const connectSrcUrls = [];
-const frameSrcUrls = [];
-const fontSrcUrls = [];
+const scriptSrcUrls = [
+  "https://*.fontawesome.com/"
+];
+const styleSrcUrls = [
+  "https://*.fontawesome.com/"
+];
+const connectSrcUrls = [
+  "https://*.fontawesome.com/"
+];
+const frameSrcUrls = [
+  "https://*.fontawesome.com/"
+];
+const fontSrcUrls = [
+  "https://*.fontawesome.com/"
+];
 const imgUrls = ["https://res.cloudinary.com/"];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "http://127.0.0.1:3000/*"],
+      defaultSrc: [],
       frameSrc: ["'self'", ...frameSrcUrls],
       connectSrc: ["'self'", ...connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
