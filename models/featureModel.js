@@ -42,7 +42,7 @@ FeatureSchema.pre(/^find/, function (next) {
 
 FeatureSchema.pre(/^find/, function(next) {
   this.populate({
-    path: "comments",
+    path: "Comment",
     options: {
       sort: {
         // Show newest review at the top

@@ -41,7 +41,7 @@ BugSchema.pre(/^find/, function (next) {
 
 BugSchema.pre(/^find/, function(next) {
   this.populate({
-    path: "comments",
+    path: "Comment",
     options: {
       sort: {
         // Show newest review at the top

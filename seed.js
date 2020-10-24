@@ -82,7 +82,7 @@ exports.seedProjects = async function () {
     let projectName = faker.lorem.words();
     let projectDesc = faker.lorem.paragraph();
     let projectUrl = faker.internet.domainName();
-    let testerId = [projectUserInfo.id];
+    let testerId = userArray;
     let newProject = await Project.create({
       projectCreator,
       projectName,
