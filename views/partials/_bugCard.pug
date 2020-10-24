@@ -1,12 +1,16 @@
 .card.shadow.my-2
   .card-header.capitolize= bug.title
-    if currentUser.id === project.projectCreator.id
-      button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button" data-toggle="modal" data-target="#bugStatusModal") Update/Add Status
+    //- This button is on each bug card with it's own unique id
+    button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button" data-toggle="modal" data-target=`#modal-${bug.id}`) View
+    //- This brings in a modal for each bug submitted.
+    include _viewBugModal
     span.badge.badge-danger.ml-2 Bug
   .card-body
     if bug.image.secure_url
       a(href=`${bug.image.secure_url}` target="_blank")
-        img.img-thumbnail.img-fluid.image.float-right(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+        img.img-thumbnail.img-fluid.image-sm.float-right(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+    else
+      img.img-thumbnail.img-fluid.image-sm.float-right(src="/images/no-user.jpg", alt=`${bug.title}'s image`)
     p.card-text.float-left= bug.description
     br
     .clearfix
@@ -14,13 +18,14 @@
       small= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
       br
       small= `By: ${bug._userId.username}`
-  .card.mt-2
-    .card-header.capitolize Comments
-      button.btn.btn-outline-primary.btn-sm.float-right(type="button") Hide/Show Comments
-      button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
-      include _commentModal
-    .card-body.shadow
-      p Comment here
-      small= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
-      br
-      small= `By: ${bug._userId.username}`
+  //- .card.mt-2
+  //-   .card-header.capitolize Comments
+  //-     button#hide-comment.btn.btn-outline-primary.btn-sm.float-right(type="button") Hide/Show Comments
+  //-     button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
+  //-     include _commentModal
+  //-   #comment-elem.card-body.shadow
+  //-     p Comment here
+  //-     small= `Created: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
+  //-     br
+  //-     small= `By: ${bug._userId.username}`
+    

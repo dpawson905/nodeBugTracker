@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const TokenSchema = new Schema({
+const CommentSchema = new Schema({
   _userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  token: {
+  comment: {
     type: String,
     required: true,
   },
-  expiresDateCheck: {
-    type: Date,
-    required: true,
-    default: Date.now,
-    expires: 3600,
-  },
+  replies: {
+    type: [String],
+    trim: true
+  }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Token", TokenSchema);
+module.exports = mongoose.model("Comment", CommentSchema);

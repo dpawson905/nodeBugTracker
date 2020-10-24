@@ -1,0 +1,16 @@
+div.modal.fade(id=`modal-${bug.id}` tabindex='-1' aria-labelledby=`viewBugLabel${bug.id}` aria-hidden='true')
+  .modal-dialog.modal-xl
+    .modal-content
+      .modal-header
+        h5(id=`viewBugLabel${bug.id}`).modal-title.capitolize= bug.title
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        .container-fluid
+          .row
+            .col-xl-4.col-lg-6.col-12
+              if bug.image.secure_url
+                a(href=`${bug.image.secure_url}` target="_blank")
+                  img.img-fluid(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+              else
+                img.img-fluid(src="/images/no-user.jpg", alt=`${bug.title}'s image`)

@@ -28,6 +28,7 @@ const usersRouter = require("./routes/userRouter");
 const csrfProtection = csrf({ cookie: true });
 
 const app = express();
+
 app.use(compression());
 
 // view engine setup

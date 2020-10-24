@@ -83,6 +83,13 @@ exports.verifyFromEmail = async (req, res, next) => {
   await token.remove();
   await req.login(user, (err) => {
     if (err) return next(err);
+    io.sockets.on('connection', function(socket) {
+      socket.on('username', function(username) {
+          socket.username = username;
+          io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
+          console.log(username)
+      });
+    });
     req.flash("success", `Welcome to ${res.locals.title} ${user.username}`);
     const redirectUrl = req.session.redirectTo || "/";
     delete req.session.redirectTo;
@@ -101,6 +108,7 @@ exports.postLogin = async (req, res, next) => {
     successFlash: `Welcome back ${req.body.username}`,
     failureFlash: true,
   })(req, res, next);
+  
 };
 
 exports.logOut = (req, res, next) => {
