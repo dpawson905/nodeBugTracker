@@ -17,4 +17,9 @@ const CommentSchema = new Schema({
   }
 }, { timestamps: true });
 
+CommentSchema.pre(/^find/, function (next) {
+  this.populate("_userId");
+  next();
+});
+
 module.exports = mongoose.model("Comment", CommentSchema);

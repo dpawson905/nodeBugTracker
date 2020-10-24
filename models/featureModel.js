@@ -20,14 +20,36 @@ const FeatureSchema = new Schema(
       required: true,
       trim: true,
     },
-    images: [
+    comments: [
       {
-        url: String,
-        public_id: String,
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+        required: true,
       },
     ],
+    images: {
+      url: String,
+      public_id: String,
+    },
   },
   { timestamps: true }
 );
 
+FeatureSchema.pre(/^find/, function (next) {
+  this.populate("_userId");
+  next();
+});
+
+FeatureSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: "comments",
+    options: {
+      sort: {
+        // Show newest review at the top
+        _id: -1,
+      },
+    },
+  });
+  next();
+});
 module.exports = mongoose.model("Feature", FeatureSchema);

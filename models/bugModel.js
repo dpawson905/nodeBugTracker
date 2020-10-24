@@ -19,6 +19,13 @@ const BugSchema = new Schema(
       required: true,
       trim: true,
     },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+        required: true,
+      },
+    ],
     image: {
       secure_url: String,
       public_id: String,
@@ -29,6 +36,19 @@ const BugSchema = new Schema(
 
 BugSchema.pre(/^find/, function (next) {
   this.populate("_userId");
+  next();
+});
+
+BugSchema.pre(/^find/, function(next) {
+  this.populate({
+    path: "comments",
+    options: {
+      sort: {
+        // Show newest review at the top
+        _id: -1,
+      },
+    },
+  });
   next();
 });
 

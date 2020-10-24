@@ -56,13 +56,6 @@ const ProjectSchema = new Schema(
         required: true,
       },
     ],
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Comment",
-        required: true,
-      },
-    ],
   },
   { timestamps: true }
 );
@@ -99,17 +92,5 @@ ProjectSchema.pre(/^find/, function(next) {
   });
   next();
 });
-// ProjectSchema.pre(/^find/, function(next) {
-//   this.populate({
-//     path: "comments",
-//     options: {
-//       sort: {
-//         // Show newest review at the top
-//         _id: -1,
-//       },
-//     },
-//   });
-//   next();
-// });
 
 module.exports = mongoose.model("Project", ProjectSchema);

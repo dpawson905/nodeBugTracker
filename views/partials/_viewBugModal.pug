@@ -1,8 +1,9 @@
 div.modal.fade(id=`modal-${bug.id}` tabindex='-1' aria-labelledby=`viewBugLabel${bug.id}` aria-hidden='true')
-  .modal-dialog.modal-xl
+  .modal-dialog.modal-dialog-scrollable.modal-xl
     .modal-content
       .modal-header
         h5(id=`viewBugLabel${bug.id}`).modal-title.capitolize= bug.title
+          span.badge.badge-danger.ml-2 Bug
         button.close(type='button' data-dismiss='modal' aria-label='Close')
           span(aria-hidden='true') &times;
       .modal-body
@@ -14,3 +15,7 @@ div.modal.fade(id=`modal-${bug.id}` tabindex='-1' aria-labelledby=`viewBugLabel$
                   img.img-fluid(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
               else
                 img.img-fluid(src="/images/no-user.jpg", alt=`${bug.title}'s image`)
+            .col-xl-6.col-lg-6.col-12
+              p.lead=bug.description
+            .col-12.mt-3
+              h6 Comments

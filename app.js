@@ -18,6 +18,15 @@ const MongoDBStore = require("connect-mongo")(session);
 const csrf = require("csurf");
 const expressSanitizer = require("express-sanitizer");
 
+// const seed = require('./seed');
+// seed
+//   .seedUsers()
+//   .then(() => seed.seedProjects())
+//   .then(() => seed.seedBugs())
+//   .then(() => seed.seedFeatures())
+//   .then(() => seed.seedBugComments())
+//   .then(() => seed.seedFeatureComments());
+
 const User = require("./models/userModel");
 
 const authRouter = require("./routes/authRouter");
