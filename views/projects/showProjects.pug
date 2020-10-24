@@ -3,12 +3,38 @@ extends ../layout
 block content
   .container-fluid.my-5
     .row
+      //- Code for creator view
       if currentUser.userType === 'creator'
-        .col-xl-4
-          h3.text-center Info
-          ul.list-group
-            
+        if !userProjects.length
+          h1.text-center You currently have no projects
+        else
+          .col-xl-3.d-none.d-xl-block
+            h3.text-center.capitolize Info
+            ul.list-group.mb-2
+              each project in userProjects
+                .dropdown 
+                  button.capitolize.list-group-item.d-flex.justify-content-between.align-items-center.list-group-item-action.list-group-item-secondary(type="button" id=`${project.id}` data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")=`${project.projectName.substring(0,20) + '...'}`
+                    span.badge.badge-primary.badgepill= `Testers: ${project.testerId.length}`
+                  .dropdown-menu(aria-labelledby=`${project.id}`)
+                    ul.list-group
+                      each tester in project.testerId
+                        li.dropdown-item.list-group-item= tester.username
+            h3.text-center.mt-2 Actions
+            ul.list-group
+              button.list-group-item.list-group-item-action.list-group-item-primary(type="button") Add New Project
+              button.list-group-item.list-group-item-action.list-group-item-info(type="button") Invite New tester
+          .col-xl-9.col-12
+            h3.text-center.capitolize Recent Activity
+            each project in userProjects
+              .card.mb-2
+                .card-header.capitolize
+                  small.float-right= `Project Created On: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
+                .card-body
+                  h5.card-title.capitolize
+                    a(href=`/projects/${project.id}`)= project.projectName
+                  p= project.projectDesc
 
+      //- Code below for tester view
       else
         .col-8.offset-2.mt-3
           h1.text-center.capitolize.pb-3 Test Apps

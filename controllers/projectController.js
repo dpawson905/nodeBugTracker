@@ -6,7 +6,7 @@ exports.indexPage = async (req, res, next) => {
 };
 
 exports.viewProjects = async (req, res, next) => {
-  const userProjects = await Project.find({ projectCreator: req.user });
+  const userProjects = await Project.find({ projectCreator: req.user }).sort('-_id').limit(10);
   res.render('projects/showProjects', { userProjects, url: 'projects' });
 };
 
