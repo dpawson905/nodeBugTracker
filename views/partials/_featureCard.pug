@@ -11,13 +11,7 @@
     if currentUser.id === project.projectCreator.id
       button.my-auto.btn.btn-outline-secondary.btn-sm.float-right(type="button") Update
   .card.mt-2
-    .card-header.capitolize Comments
-      button#hide-comment.btn.btn-outline-primary.btn-sm.float-right(type="button") Hide/Show Comments
+    .card-header.capitolize Comments(#{feature.comments.length})
+      button#hide-comment.btn.btn-outline-primary.btn-sm.float-right(type="button") View Comments
       button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
       include _commentModal
-    #comment-elem.card-body.shadow
-      if !feature.comments.length
-        p No comments have been posted yet
-      else
-        each comment in feature.comments
-          p= comment.comment

@@ -29,11 +29,17 @@ block content
             a#features-tab.nav-link(data-toggle='tab' href='#features' role='tab' aria-controls='features' aria-selected='false') Features
         #myTabContent.tab-content
           #bugs.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='bugs-tab')
-            each bug in project.bugsTracked
-              include ../partials/_bugCard
+            if project.bugsTracked.length
+              each bug in project.bugsTracked
+                include ../partials/_bugCard
+            else
+              h1.text-center.mt-3 No reported bugs as of now.
           #features.tab-pane.fade(role='tabpanel' aria-labelledby='features-tab')
-            each feature in project.featuresTracked
-              include ../partials/_featureCard
+            if project.featuresTracked.length
+              each feature in project.featuresTracked
+                include ../partials/_featureCard
+            else
+                h1.text-center No reported bugs as of now.
 
   include ../partials/_bugModal
   include ../partials/_featureModal
