@@ -103,8 +103,8 @@ const sess = {
   secret: process.env.COOKIE_SECRET,
   cookie: {
     httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60,
-    maxAge: 1000 * 60 * 60,
+    expires: Date.now() + (1000 * 60 * 60) / 1,
+    maxAge: (1000 * 60 * 60) / 1,
   },
   store: new MongoDBStore({
     url: process.env.DB_URL,
