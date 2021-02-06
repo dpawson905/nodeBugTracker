@@ -26,10 +26,7 @@ const BugSchema = new Schema(
         required: true,
       },
     ],
-    image: {
-      secure_url: String,
-      public_id: String,
-    },
+    images: [{ path: String, filename: String }],
   },
   { timestamps: true }
 );
@@ -39,7 +36,7 @@ BugSchema.pre(/^find/, function (next) {
   next();
 });
 
-BugSchema.pre(/^find/, function(next) {
+BugSchema.pre(/^find/, function (next) {
   this.populate({
     path: "Comment",
     options: {
