@@ -1,7 +1,7 @@
 # Node Bug Tracker
 ## Requirements
 1. This project uses MongoDb(Mongoose), Express, Cloudinary, SendGrid and the template engine is Pug.
-2. For authentication is implemented using passport and stores local accounts.
+2. Passport.js is used for storing local accounts.
 ## Setup
 * Create a .env file and input the following...
     - NODE_ENV=
