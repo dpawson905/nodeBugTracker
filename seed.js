@@ -27,8 +27,8 @@ const gatherProjectIds = async function () {
   return projectIds;
 };
 
-const gatherBugData = async function () {
-  const bugs = await Bug.find({});
+const gatherBugData = async function () { 
+  const bugs = await Bug.find({}); 
   const bugsArray = [];
   for (let i of bugs) {
     bugsArray.push(i);
@@ -77,6 +77,25 @@ exports.seedUsers = async function () {
   }
   console.log("10 new users created");
 };
+
+exports.createAdmin = async function () {
+  const admin = {
+    email: "dpawson905@gmail.com",
+    username: "darrell",
+    password: "password",
+    firstName: "Darrell",
+    lastName: "Pawson",
+    isVerified: true,
+    userType: "creator",
+    roles: {
+      admin: true,
+      basic: false
+    },
+    expiresDateCheck: undefined,
+  };
+  await User.register(admin, admin.password);
+  console.log('Admin created')
+}
 
 exports.seedProjects = async function () {
   await Project.deleteMany({});

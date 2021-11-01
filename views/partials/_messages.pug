@@ -5,7 +5,8 @@ if error && error.length
       strong.mr-auto= title
       small Just Now
       button.ml-2.mb-1.close(type='button', data-dismiss='toast', aria-label='Close')
-        span(aria-hidden='true') <i class="fal fa-comment-alt-times"></i>
+        span(aria-hidden='true') 
+          i.fa-duotone.fa-spider-black-widow
     .toast-body.text-danger.text-center.mt-2
       p=error
   script.
@@ -21,7 +22,8 @@ if success && success.length
       strong.mr-auto= title
       small Just Now
       button.ml-2.mb-1.close(type='button', data-dismiss='toast', aria-label='Close')
-        span(aria-hidden='true') <i class="fal fa-comment-alt-times"></i>
+        span(aria-hidden='true')
+          i.fa-duotone.fa-spider-black-widow
     .toast-body.text-success.text-center.mt-2
       p=success
   script.

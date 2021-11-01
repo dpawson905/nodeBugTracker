@@ -1,11 +1,6 @@
-# This is basically a stripped down github... It allows users of a web app to create a bug report or a feature request.
-# It allows non technical people to report things that could help the developer out when it comes to the app.
-# My thought process on this is ... Most people do not want/need a github account. Trello is more aimed towards dev's or groups in a project.
-# I think that this project has some value if built correctly and if users find it worth using. There are other ways of getting feedback like SurveyMonkey or any type of poll/survey site.
-
-User signs up for a local account.
-User verifies account via email.
-Once user is signed up they can create a project...
+User signs up for a local account. --DONE
+User verifies account via email. --DONE
+Once user is signed up they can create a project... --DONE
 Once the project is set up, the user can add other users by their email address to have access to that project.
   - One of a few things can happen here...
     * The invited user has to be signed up and verified to be added to the project

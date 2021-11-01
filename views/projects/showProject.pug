@@ -20,7 +20,7 @@ block content
         p Test Users / Contributors
         each tester in project.testerId
           a(href="#")
-            img.img-fluid.contribImage(src=`${tester.image.path}`, alt=`${tester.username}'s image`)
+            img.img-fluid.contribImage.border(src=`${tester.image.path}`, alt=`${tester.username}'s image`)
       .col-12.mt-5
         ul#myTab.nav.nav-tabs(role='tablist')
           li.nav-item(role='presentation')

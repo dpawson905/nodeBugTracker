@@ -1,14 +1,14 @@
 extends ../layout
 
 block content
-  .container-fluid.my-5
-    .row
+  .container-fluid.mt-5.p-5
+    .row.p-5
       //- Code for creator view
       if currentUser.userType === 'creator'
         if !userProjects.length
           h1.text-center You currently have no projects
         else
-          .col-xl-3.d-none.d-xl-block
+          .col-xl-4.d-none.d-xl-block.col-12
             h3.text-center.capitolize Info
             ul.list-group.mb-2
               each project in userProjects
@@ -23,12 +23,12 @@ block content
             ul.list-group
               button.list-group-item.list-group-item-action.list-group-item-primary(type="button") Add New Project
               button.list-group-item.list-group-item-action.list-group-item-info(type="button") Invite New Tester
-          .col-xl-9.col-12
+          .col-xl-8.col-12
             h3.text-center.capitolize Recent Activity
             each project in userProjects
               .card.mb-2
                 .card-header.capitolize
-                  small.float-right= `Project Created On: ${moment(project.createdAt).format("MMM-DD-YYYY h:mA")}`
+                  small.float-right= `Project Created On: ${moment(project.createdAt).format("MMM-DD-YYYY hh:mm:A")}`
                 .card-body
                   h5.card-title.capitolize
                     a(href=`/projects/${project.id}`)= project.projectName

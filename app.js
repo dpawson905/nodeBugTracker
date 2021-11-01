@@ -26,6 +26,7 @@ const errLogger = require("./utils/logs");
 // const seed = require('./seed');
 // seed
 //   .seedUsers()
+//   .then(() => seed.createAdmin())
 //   .then(() => seed.seedProjects())
 //   .then(() => seed.seedBugs())
 //   .then(() => seed.seedFeatures())
@@ -101,6 +102,7 @@ app.use(
   })
 );
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "node_modules")));
 
 app.locals.moment = require("moment");
 
