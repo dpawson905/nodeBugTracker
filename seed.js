@@ -58,6 +58,10 @@ exports.seedUsers = async function () {
     let userType = "tester";
     let expiresDateCheck = undefined;
     let password = "password";
+    let image = {
+      path: faker.image.avatar(),
+      filename: firstName
+    }
     let user = {
       email,
       username,
@@ -67,6 +71,7 @@ exports.seedUsers = async function () {
       userType,
       expiresDateCheck,
       password,
+      image
     };
     await User.register(user, user.password);
   }
@@ -106,10 +111,15 @@ exports.seedBugs = async function () {
     let _userId = userInfo.id;
     let title = faker.lorem.words();
     let description = faker.lorem.paragraph();
+    let image = {
+      path: faker.image.nightlife(),
+      filename: 'Some random filename'
+    }
     let newBug = await Bug.create({
       _userId,
       title,
       description,
+      image
     });
     project.bugsTracked.push(newBug);
     await project.save();

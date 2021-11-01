@@ -18,6 +18,11 @@ const MongoDBStore = require("connect-mongo");
 const csrf = require("csurf");
 const expressSanitizer = require("express-sanitizer");
 
+const logs = require("./utils/logs");
+
+const errLogger = require("./utils/logs");
+// errLogger.errorLog();
+
 // const seed = require('./seed');
 // seed
 //   .seedUsers()
@@ -60,7 +65,7 @@ const frameSrcUrls = [
 const fontSrcUrls = [
   "https://*.fontawesome.com/"
 ];
-const imgUrls = ["https://res.cloudinary.com/"];
+const imgUrls = ["https://res.cloudinary.com/", "https://cdn.fakercloud.com"];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {

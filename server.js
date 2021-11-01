@@ -1,5 +1,5 @@
 const debug = require('debug')('bug-tracker:server');
-const mongoose = require("mongoose");
+const dbUtil = require("./utils/db");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
@@ -7,14 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const app = require("./app");
 
-const DB = process.env.DB_URL;
-
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => debug("DB connection successful!"));
+dbUtil.connectToDb();
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {

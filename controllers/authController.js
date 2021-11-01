@@ -3,6 +3,7 @@ const passport = require("passport");
 const crypto = require("crypto");
 const Email = require("../utils/email");
 const emailUrl = require("../utils/urls");
+const helpers = require("../utils/helpers");
 
 const User = require("../models/userModel");
 const Token = require("../models/tokenModel");
@@ -55,8 +56,19 @@ exports.postRegister = async (req, res, next) => {
         userInfo,
         url: "register",
       });
+    }
+    if (err.message === "Unauthorized") {
+      helpers.removeFailedUser(User, req.body.email);
+      const error =
+        "Something has went wrong with sending an email. Please try again in a few.";
+      return res.render("auth/register", {
+        error,
+        userInfo,
+        url: "register",
+      });
     } else {
-      debug(err);
+      debug(err, req.body);
+      helpers.removeFailedUser(User, req.body.email);
       const error = err.message;
       return res.render("auth/register", {
         error,
@@ -83,11 +95,14 @@ exports.verifyFromEmail = async (req, res, next) => {
   await token.remove();
   await req.login(user, (err) => {
     if (err) return next(err);
-    io.sockets.on('connection', function(socket) {
-      socket.on('username', function(username) {
-          socket.username = username;
-          io.emit('is_online', '🔵 <i>' + socket.username + ' join the chat..</i>');
-          console.log(username)
+    io.sockets.on("connection", function (socket) {
+      socket.on("username", function (username) {
+        socket.username = username;
+        io.emit(
+          "is_online",
+          "🔵 <i>" + socket.username + " join the chat..</i>"
+        );
+        console.log(username);
       });
     });
     req.flash("success", `Welcome to ${res.locals.title} ${user.username}`);
@@ -108,7 +123,6 @@ exports.postLogin = async (req, res, next) => {
     successFlash: `Welcome back ${req.body.username}`,
     failureFlash: true,
   })(req, res, next);
-  
 };
 
 exports.logOut = (req, res, next) => {
