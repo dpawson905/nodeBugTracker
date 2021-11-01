@@ -52,19 +52,29 @@ app.set("view engine", "pug");
 
 // Set security HTTP headers
 const scriptSrcUrls = [
-  "https://*.fontawesome.com/"
+  "https://*.fontawesome.com/",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com"
 ];
 const styleSrcUrls = [
-  "https://*.fontawesome.com/"
+  "https://*.fontawesome.com/",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com"
 ];
 const connectSrcUrls = [
-  "https://*.fontawesome.com/"
+  "https://*.fontawesome.com/",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com"
 ];
 const frameSrcUrls = [
-  "https://*.fontawesome.com/"
+  "https://*.fontawesome.com/",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com"
 ];
 const fontSrcUrls = [
-  "https://*.fontawesome.com/"
+  "https://*.fontawesome.com/",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com"
 ];
 const imgUrls = ["https://res.cloudinary.com/", "https://cdn.fakercloud.com"];
 app.use(

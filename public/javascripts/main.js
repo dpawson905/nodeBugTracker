@@ -1,7 +1,7 @@
 (function ($) {
   /*global $:true, jQuery:true */
-  var navHeight = $('.navbar').height();
-  $('body').css({ paddingTop : navHeight });
+  var navHeight = $('.nav-fix').outerHeight();
+  $('body').css({ marginTop : navHeight });
 
   function checkPasswordMatch() {
     var password = $("#password").val();

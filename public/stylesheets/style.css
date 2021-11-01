@@ -1,5 +1,15 @@
 body {
-  overflow-x: hidden !important; }
+  overflow-x: hidden !important;
+  font-family: 'Zen Kurenaido', sans-serif;
+  letter-spacing: .8px;
+  padding: 2.4rem; }
+
+.h-custom {
+  height: calc(100vh - 56px);
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important; }
 
 .capitolize {
   text-transform: capitalize; }
@@ -9,19 +19,16 @@ body {
   width: auto; }
 
 .login-img {
-  height: 95.7vh;
-  max-height: 100vh;
-  width: 100% !important; }
+  max-height: 100vh !important;
+  max-width: 100% !important; }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh; }
+  justify-content: center; }
 
 .login-form .form-inputs {
-  width: 35vw; }
+  width: 100%; }
 
 .form-error {
   color: red;

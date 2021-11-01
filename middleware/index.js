@@ -9,7 +9,7 @@ const middleware = {
   isAuthenticated: (req, res, next) => {
     if (req.isAuthenticated()) {
       req.flash("error", "You are currently logged in.");
-      res.redirect("/");
+      return res.redirect("/");
     } else {
       return next();
     }
@@ -21,7 +21,7 @@ const middleware = {
     } else {
       req.flash("error", "You are not authenticated");
       req.session.redirectTo = req.originalUrl;
-      res.redirect("/auth/login");
+      return res.redirect("/auth/login");
     }
   },
 
@@ -30,7 +30,7 @@ const middleware = {
       return next();
     }
     req.flash("error", "You don't have the privileges to do that.");
-    res.redirect("/auth/login");
+    return res.redirect("/auth/login");
   },
 
   deleteProfileImage: async (req) => {
@@ -39,18 +39,20 @@ const middleware = {
 
   isVerified: async (req, res, next) => {
     let user = await User.findOne({ email: req.body.email });
-    if (!user.isVerified) {
+    if (!user) return next();
+    if (user && !user.isVerified) {
       return next();
     }
     req.flash("error", "Your account is already active.");
-    res.redirect("/");
+    return res.redirect("/");
   },
   
   isNotVerified: async (req, res, next) => {
     let user = await User.findOne({ username: req.body.username });
-    if (!user.isVerified) {
+    if (!user) return next();
+    if (user && !user.isVerified) {
       req.flash("error", "Your account is not active.");
-      res.redirect("/");
+      return res.redirect("/");
     }
     return next();
   },
@@ -71,7 +73,7 @@ const middleware = {
   checkUserType: (req, res, next) => {
     if (req.user.userType === 'creator') return next();
     req.flash('error', 'You do not have permission to do this.');
-    res.redirect('/projects');
+    return res.redirect('/projects');
   }
 };
 
