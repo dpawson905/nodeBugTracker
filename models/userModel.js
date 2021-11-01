@@ -66,8 +66,8 @@ const UserSchema = new Schema(
       },
     ],
     image: {
-      secure_url: { type: String, default: "/images/no-user.jpg" },
-      public_id: String,
+      path: { type: String, default: "/images/no-user.jpg" },
+      filename: String,
     },
     expiresDateCheck: {
       type: Date,

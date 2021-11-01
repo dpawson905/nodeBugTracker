@@ -34,7 +34,7 @@ const middleware = {
   },
 
   deleteProfileImage: async (req) => {
-    if (req.file) await cloudinary.v2.uploader.destroy(req.file.public_id);
+    if (req.file) await cloudinary.uploader.destroy(req.file.filename);
   },
 
   isVerified: async (req, res, next) => {

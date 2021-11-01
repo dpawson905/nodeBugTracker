@@ -27,7 +27,7 @@ const FeatureSchema = new Schema(
         required: true,
       },
     ],
-    images: {
+    image: {
       url: String,
       public_id: String,
     },
