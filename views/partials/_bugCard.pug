@@ -6,9 +6,9 @@
     include _viewBugModal
     span.badge.badge-danger.ml-2 Bug
   .card-body
-    if bug.image.secure_url
-      a(href=`${bug.image.secure_url}` target="_blank")
-        img.img-thumbnail.img-fluid.image-sm.float-right(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+    if bug.image.path
+      a(href=`${bug.image.path}` target="_blank")
+        img.img-thumbnail.img-fluid.image-sm.float-right(src=`${bug.image.path}`, alt=`${bug.title}'s image`)
     else
       img.img-thumbnail.img-fluid.image-sm.float-right(src="/images/no-user.jpg", alt=`${bug.title}'s image`)
     p.card-text.float-left= bug.description

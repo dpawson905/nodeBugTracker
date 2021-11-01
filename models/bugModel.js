@@ -26,7 +26,7 @@ const BugSchema = new Schema(
         required: true,
       },
     ],
-    images: [{ path: String, filename: String }],
+    image: { path: String, filename: String },
   },
   { timestamps: true }
 );
@@ -39,6 +39,7 @@ BugSchema.pre(/^find/, function (next) {
 BugSchema.pre(/^find/, function (next) {
   this.populate({
     path: "Comment",
+    strictPopulate: false,
     options: {
       sort: {
         // Show newest review at the top

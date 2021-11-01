@@ -16,11 +16,11 @@ block content
       .col-4.my-3
         p Project Creator(s)
         a(href="#")
-          img.img-fluid.contribImage.mb-2(src=`${project.projectCreator.image.secure_url}`, alt=`${project.projectCreator.username}'s image`)
+          img.img-fluid.contribImage.mb-2(src=`${project.projectCreator.image.path}`, alt=`${project.projectCreator.username}'s image`)
         p Test Users / Contributors
         each tester in project.testerId
           a(href="#")
-            img.img-fluid.contribImage(src=`${tester.image.secure_url}`, alt=`${tester.username}'s image`)
+            img.img-fluid.contribImage(src=`${tester.image.path}`, alt=`${tester.username}'s image`)
       .col-12.mt-5
         ul#myTab.nav.nav-tabs(role='tablist')
           li.nav-item(role='presentation')

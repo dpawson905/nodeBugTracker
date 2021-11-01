@@ -10,9 +10,9 @@ div.modal.fade(id=`modal-${bug.id}` tabindex='-1' aria-labelledby=`viewBugLabel$
         .container-fluid
           .row
             .col-xl-4.col-lg-6.col-12
-              if bug.image.secure_url
-                a(href=`${bug.image.secure_url}` target="_blank")
-                  img.img-fluid(src=`${bug.image.secure_url}`, alt=`${bug.title}'s image`)
+              if bug.image.path
+                a(href=`${bug.image.path}` target="_blank")
+                  img.img-fluid(src=`${bug.image.path}`, alt=`${bug.title}'s image`)
               else
                 img.img-fluid(src="/images/no-user.jpg", alt=`${bug.title}'s image`)
             .col-xl-6.col-lg-6.col-12

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const FeatureSchema = new Schema(
   {
     _userId: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.ObjectId,
       ref: "User",
       required: true,
     },
@@ -22,14 +22,14 @@ const FeatureSchema = new Schema(
     },
     comments: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.ObjectId,
         ref: "Comment",
         required: true,
       },
     ],
     image: {
-      url: String,
-      public_id: String,
+      path: String,
+      filename: String,
     },
   },
   { timestamps: true }
@@ -43,6 +43,7 @@ FeatureSchema.pre(/^find/, function (next) {
 FeatureSchema.pre(/^find/, function(next) {
   this.populate({
     path: "Comment",
+    strictPopulate: false,
     options: {
       sort: {
         // Show newest review at the top
