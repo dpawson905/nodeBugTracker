@@ -1,5 +1,5 @@
 const passport = require("passport");
-const faker = require("faker");
+const faker = require("@faker-js/faker");
 const _ = require("lodash");
 const User = require("./models/userModel");
 const Project = require("./models/projectModel");

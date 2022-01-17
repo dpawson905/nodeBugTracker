@@ -42,7 +42,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "create-admin-cli": "^1.0.4",
-    "faker": "^6.6.6"
+    "@faker-js/faker": "^6.0.0-alpha.3",
+    "create-admin-cli": "^1.0.4"
   }
 }
