@@ -71,7 +71,7 @@ const middleware = {
   }, 
 
   checkUserType: (req, res, next) => {
-    if (req.user.userType === 'creator') return next();
+    if (req.user.roles.dev_admin) return next();
     req.flash('error', 'You do not have permission to do this.');
     return res.redirect('/projects');
   }

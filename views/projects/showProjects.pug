@@ -9,11 +9,11 @@ block content
           h1.text-center You currently have no projects
         else
           .col-xl-4.d-none.d-xl-block.col-12
-            h3.text-center.capitolize Info
+            h3.text-center.capitalize Info
             ul.list-group.mb-2
               each project in userProjects
                 .dropdown 
-                  button.capitolize.list-group-item.d-flex.justify-content-between.align-items-center.list-group-item-action.list-group-item-secondary(type="button" id=`${project.id}` data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")=`${project.projectName.substring(0,20) + '...'}`
+                  button.capitalize.list-group-item.d-flex.justify-content-between.align-items-center.list-group-item-action.list-group-item-secondary(type="button" id=`${project.id}` data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")=`${project.projectName.substring(0,20) + '...'}`
                     span.badge.badge-primary.badgepill= `Testers: ${project.testerId.length}`
                   .dropdown-menu(aria-labelledby=`${project.id}`)
                     ul.list-group
@@ -24,22 +24,22 @@ block content
               button.list-group-item.list-group-item-action.list-group-item-primary(type="button") Add New Project
               button.list-group-item.list-group-item-action.list-group-item-info(type="button") Invite New Tester
           .col-xl-8.col-12
-            h3.text-center.capitolize Recent Activity
+            h3.text-center.capitalize Recent Activity
             each project in userProjects
               .card.mb-2
-                .card-header.capitolize
+                .card-header.capitalize
                   small.float-right= `Project Created On: ${moment(project.createdAt).format("MMM-DD-YYYY hh:mm:A")}`
                 .card-body
-                  h5.card-title.capitolize
+                  h5.card-title.capitalize
                     a(href=`/projects/${project.id}`)= project.projectName
                   p= project.projectDesc
 
       //- Code below for tester view
       else
         .col-8.offset-2.mt-3
-          h1.text-center.capitolize.pb-3 Test Apps
+          h1.text-center.capitalize.pb-3 Test Apps
           .card
-            .card-header.capitolize 
+            .card-header.capitalize 
               if !userProjects.length
                 p.m-0 You currently have no projects
                   span.float-right
@@ -49,6 +49,6 @@ block content
             ul.list-group.list-group-flush
               each project in userProjects
                 li.list-group-item
-                  p.my-0.capitolize
+                  p.my-0.capitalize
                     a(href=`/projects/${project.id}`)= project.projectName
                   small=project.projectDesc

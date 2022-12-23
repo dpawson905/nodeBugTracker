@@ -1,4 +1,3 @@
-const debug = require('debug')('bug-tracker:app');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -13,12 +12,9 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const passport = require('passport');
-const mongoose = require('mongoose');
 const MongoDBStore = require('connect-mongo');
 const csrf = require('csurf');
 const expressSanitizer = require('express-sanitizer');
-
-const logs = require('./utils/logs');
 
 // const seed = require('./seed');
 // seed
@@ -91,7 +87,7 @@ app.use(
 
 // Development logging
 if (process.env.NODE_ENV.trim() === 'development') {
-  app.use(logger('common'));
+  app.use(logger('dev'));
 }
 app.use(methodOverride('_method'));
 app.use(express.json({ limit: '10kb' }));
@@ -114,7 +110,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 app.locals.moment = require('moment');
 
 const sess = {
-  secret: process.env.COOKIE_SECRET,
+  secret: process.env.SECRET,
   cookie: {
     httpOnly: true,
     expires: Date.now() + (1000 * 60 * 60) / 1,
@@ -124,7 +120,7 @@ const sess = {
     mongoUrl: process.env.DB_URL,
     touchAfter: 24 * 3600,
     crypto: {
-      secret: 'bearer' + process.env.COOKIE_SECRET,
+      secret: 'bearer' + process.env.SECRET,
     },
   }),
   resave: true,

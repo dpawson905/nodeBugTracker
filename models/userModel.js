@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 const Schema = mongoose.Schema;
+const { cloudinary } = require("../cloudinary");
+
+const opts = { toJSON: { virtuals: true }, timestamps: true };
 
 const UserSchema = new Schema(
   {
@@ -20,14 +23,14 @@ const UserSchema = new Schema(
     },
     firstName: {
       type: String,
-      lowercase: true,
-      required: true,
+      lowercase: false,
+      required: false,
       trim: true,
     },
     lastName: {
       type: String,
-      lowercase: true,
-      required: true,
+      lowercase: false,
+      required: false,
       trim: true,
     },
     isVerified: {
@@ -39,24 +42,44 @@ const UserSchema = new Schema(
         type: Boolean,
         default: false,
       },
-      admin: {
-        type: Boolean,
-        default: false,
-      },
       manager: {
         type: Boolean,
         default: false,
       },
-      basic: {
+      designer: {
+        type: Boolean,
+        default: false,
+      },
+      member: {
         type: Boolean,
         default: true,
       },
     },
-    userType: {
+    title: {
       type: String,
-      required: [true, 'Please seclect a role in the form.'],
       trim: true,
-      lowercase: true
+    },
+    bio: {
+      type: String,
+      trim: true,
+    },
+    location: {
+      type: String,
+      trim: true,
+      default: "none",
+    },
+    image: {
+      path: {
+        type: String,
+        default: "/images/no-user.webp",
+      },
+      filename: String,
+    },
+    userSlug: {
+      type: String,
+      lowercase: true,
+      trim: true,
+      unique: true,
     },
     projects: [
       {
@@ -65,10 +88,6 @@ const UserSchema = new Schema(
         required: true,
       },
     ],
-    image: {
-      path: { type: String, default: "/images/no-user.jpg" },
-      filename: String,
-    },
     expiresDateCheck: {
       type: Date,
       default: undefined,
@@ -76,12 +95,25 @@ const UserSchema = new Schema(
       expires: 86400,
     },
   },
-  { timestamps: true }
+  opts
 );
 
-UserSchema.pre('findOne', function (next) {
-  this.populate('projects');
+UserSchema.pre("findOne", function (next) {
+  this.populate("projects");
   next();
+});
+
+UserSchema.virtual("small").get(function () {
+  return this.image.path.replace(
+    "/upload",
+    "/upload/h_450,w_450,g_auto,c_fill,q_auto"
+  );
+});
+UserSchema.virtual("thumbnail").get(function () {
+  return this.image.path.replace(
+    "/upload",
+    "/upload/h_275,w_275,g_auto,c_fill,q_auto"
+  );
 });
 
 UserSchema.plugin(passportLocalMongoose, {

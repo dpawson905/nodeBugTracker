@@ -4,15 +4,15 @@ block content
   .container.my-5
     .row
       .col-12
-        h1.text-center.capitolize= project.projectName
+        h1.text-center.capitalize= project.projectName
       .col-8.mt-3
-        h1.capitolize= project.projectName
+        h1.capitalize= project.projectName
         p= project.projectDesc
-        p.capitolize
+        p.capitalize
           a(href=`${project.projectUrl}`) View project site
           div
-            button.btn.btn-outline-primary.capitolize.mr-1(type="button" data-toggle="modal" data-target="#bugModal") Submit a bug
-            button.btn.btn-outline-secondary.capitolize(type="button" data-toggle="modal" data-target="#featureModal") Submit a feature
+            button.btn.btn-outline-primary.capitalize.mr-1(type="button" data-toggle="modal" data-target="#bugModal") Submit a bug
+            button.btn.btn-outline-secondary.capitalize(type="button" data-toggle="modal" data-target="#featureModal") Submit a feature
       .col-4.my-3
         p Project Creator(s)
         a(href="#")

@@ -3,13 +3,13 @@
   .modal-dialog
     .modal-content
       .modal-header
-        h5#commentModalLabel.modal-title.capitolize Add a comment
+        h5#commentModalLabel.modal-title.capitalize Add a comment
         button.close(type='button' data-dismiss='modal' aria-label='Close')
           span(aria-hidden='true') &times;
       .modal-body
         form(action=`/projects/${project.id}/bug/comment?_csrf=${csrfToken}`, method="post" enctype="multipart/form-data")
           .form-group
-            label.capitolize(for="description") New Comment
+            label.capitalize(for="description") New Comment
             textarea.form-control(name="comment" id="comment" placeholder="Add comment here(Not working)" rows="5" required)
           .form-group
             label(for="image") Screenshot if applicable

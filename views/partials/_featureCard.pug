@@ -1,5 +1,5 @@
 .card.shadow.my-2
-  .card-header.capitolize= feature.title
+  .card-header.capitalize= feature.title
     span.float-right.badge.badge-success Feature
   .card-body
     p.card-text.pb-3= feature.description
@@ -11,7 +11,7 @@
     if currentUser.id === project.projectCreator.id
       button.my-auto.btn.btn-outline-secondary.btn-sm.float-right(type="button") Update
   .card.mt-2
-    .card-header.capitolize Comments(#{feature.comments.length})
+    .card-header.capitalize Comments(#{feature.comments.length})
       button#hide-comment.btn.btn-outline-primary.btn-sm.float-right(type="button") View Comments
       button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
       include _commentModal

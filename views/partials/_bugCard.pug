@@ -1,5 +1,5 @@
 .card.shadow.my-2
-  .card-header.capitolize= bug.title
+  .card-header.capitalize= bug.title
     //- This button is on each bug card with it's own unique id
     button.ml-1.btn.btn-outline-secondary.btn-sm.float-right(type="button" data-toggle="modal" data-target=`#modal-${bug.id}`) View
     //- This brings in a modal for each bug submitted.
@@ -19,7 +19,7 @@
       br
       small= `By: ${bug._userId.username}`
   //- .card.mt-2
-  //-   .card-header.capitolize Comments
+  //-   .card-header.capitalize Comments
   //-     button#hide-comment.btn.btn-outline-primary.btn-sm.float-right(type="button") Hide/Show Comments
   //-     button.mr-1.btn.btn-outline-success.btn-sm.float-right(type="button" data-toggle="modal" data-target="#commentModal") Add Comment
   //-     include _commentModal

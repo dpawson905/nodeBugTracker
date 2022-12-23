@@ -2,7 +2,7 @@ div.modal.fade(id=`modal-${bug.id}` tabindex='-1' aria-labelledby=`viewBugLabel$
   .modal-dialog.modal-dialog-scrollable.modal-xl
     .modal-content
       .modal-header
-        h5(id=`viewBugLabel${bug.id}`).modal-title.capitolize= bug.title
+        h5(id=`viewBugLabel${bug.id}`).modal-title.capitalize= bug.title
           span.badge.badge-danger.ml-2 Bug
         button.close(type='button' data-dismiss='modal' aria-label='Close')
           span(aria-hidden='true') &times;
